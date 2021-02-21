@@ -1,6 +1,8 @@
 const makeIdRoom = require('./makeIdRoom')
-const getRandomInt = require('./getRandomInt')
+const getRandomInt = require('./randomInt')
 const msgGen = require('./messageGenerator')
+
+//io.of("/").sockets.get(g.players[i])
 
 module.exports = {
     join: (from, io, isRandom,  idRoom="") => {
@@ -9,8 +11,16 @@ module.exports = {
         {
             if(io.waitingClients.length>0)
             {
-                let r = getRandomInt(0, io.waitingClients.length)
-                idRoom = io.waitingClients.splice(r, 1)[0]
+                try
+                {
+                    let r = getRandomInt(0, io.waitingClients.length)
+                    idRoom = io.waitingClients.splice(r, 1)[0]
+                }
+                catch
+                {
+                    this.join(from,io,isRandom,idRoom)
+                }
+                
             }
         }
 
@@ -25,7 +35,7 @@ module.exports = {
 
         if(!isRandom || (isRandom  && numClients<2))
         {
-            if(idroom || idroom=="")
+            if(idRoom=="")
             {
                 idRoom = makeIdRoom(10)
             }
@@ -37,7 +47,7 @@ module.exports = {
             {
                 io.waitingClients.push(idRoom)
             }
-
+            
 
             from.join(idRoom)
             from.send()             //Info dla proszącego

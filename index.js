@@ -28,7 +28,6 @@ io.on('connection', function(socket) {
 	socket.on('message', (msg) => 
 	{
         console.log(msg);
-
 		let data = ''
 
 		try {
@@ -36,7 +35,6 @@ io.on('connection', function(socket) {
 		} catch(error) {
 			socket.send(msgGen.errorMessage("Nie udało się rozczytać wiadomości."))
 		}
-		
 
 		if(data!='')
 		{
@@ -45,7 +43,7 @@ io.on('connection', function(socket) {
 			switch(data.cmd)
 			{
 				case 'join':
-					if(data.israndom && typeof(data.israndom)==="boolean")
+					if(typeof(data.israndom)==="boolean")
 						rm.join(socket,io,data.israndom, data.idroom?data.idroom:'')
 					else
 						isDataValid = false
