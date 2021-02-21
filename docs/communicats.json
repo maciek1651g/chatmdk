@@ -1,0 +1,68 @@
+client -> server
+
+//Zapytanie o dołączenie do pokoju
+{
+	"cmd": "join",
+	"idroom": "bvf7g93450gy8"
+}
+
+//Zapytanie o opuszczenie do pokoju
+{
+	"cmd": "leave",
+	"idroom": "bvf7g93450gy8"
+}
+
+//Zapytanie z wiadomością na czat
+{
+	"cmd": "msg",
+	"text": "Witam Panie Janku",
+	"idroom": "bvf7g93450gy8"
+}
+
+
+
+server -> client
+
+//Odpowiedź pozytywna na dołączenie do pokoju
+{
+	"cmd": "join",
+	"idroom": "bvf7g93450gy8",
+	"status": true,
+	"count": 2,									//liczba osób w pokoju
+	"texts": Array()							//tablica z ostatnimi 50 wiadomościami na czacie
+}
+
+//Odpowiedź negatywna na dołączenie do pokoju
+{
+	"cmd": "join",
+	"idroom": "bvf7g93450gy8",
+	"status": false
+}
+
+//Odpowiedź pozytywna na opuszczenie do pokoju
+{
+	"cmd": "leave",
+	"idroom": "bvf7g93450gy8",
+	"status": true
+}
+
+//Odpowiedź negatywna na opuszczenie do pokoju
+{
+	"cmd": "leave",
+	"idroom": "bvf7g93450gy8",
+	"status": false
+}
+
+//Info do wszystkich gdy ktoś opuści lub dołączy do pokóju
+{
+	"cmd": "updateRoom",
+	"idroom": "bvf7g93450gy8",
+	"count": 1
+}
+
+//Info z nową wiadomością
+{
+	"cmd": "msg",
+	"text": "Witam Panie Janku",
+	"idroom": "bvf7g93450gy8"
+}
