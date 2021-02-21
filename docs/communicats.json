@@ -3,7 +3,8 @@ client -> server
 //Zapytanie o dołączenie do pokoju
 {
 	"cmd": "join",
-	"idroom": "bvf7g93450gy8"
+	"israndom": true,					//Pokój z losową osobą true, ze znajomym false
+	"idroom": "bvf7g93450gy8"				//Jeśli nie podamy id, zostanie ono wygenerowane przez serwer
 }
 
 //Zapytanie o opuszczenie do pokoju
