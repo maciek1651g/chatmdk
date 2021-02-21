@@ -66,3 +66,9 @@ server -> client
 	"text": "Witam Panie Janku",
 	"idroom": "bvf7g93450gy8"
 }
+
+//Error
+{
+	"cmd": "error",
+	"description": "Coś się popsuło."
+}
