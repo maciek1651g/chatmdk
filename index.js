@@ -6,7 +6,7 @@ const io = require('socket.io')(http);
 const port = process.env.PORT || 3000
 const msgGen = require('./messageGenerator')
 const rm = require('./roomManager')
-io.waitingClients = []
+io.waitingClients = new Set()
 io.chatTexts = []
 
 //Routing
@@ -16,13 +16,13 @@ app.use(express.static('client'))
 //Whenever someone connects this gets executed
 io.on('connection', function(socket) {
 	console.log('A user connected');
-	let idroom = ''
+	let idRoom = ''
 
 	if(socket.handshake.query.idroom)
 	{
-		idroom = socket.handshake.query.idroom
+		idRoom = socket.handshake.query.idroom
 		//throw new Error("Dodanie użyszkodnika do pokoju(od razu)")
-		console.log("Dodanie użyszkodnika do pokoju(od razu)")
+		rm.join(socket,io,false, idRoom)
 	}
 
 	socket.on('message', (msg) => 
@@ -49,8 +49,13 @@ io.on('connection', function(socket) {
 						isDataValid = false
 					break
 				case 'leave':
+					rm.join(socket,io, data.idroom?data.idroom:'')
 					break
 				case 'msg':
+					if(data.text && data.text!='')
+						rm.message(socket,io,data.text, data.idroom?data.idroom:'')
+					else
+						isDataValid = false
 					break
 				default:
 					isDataValid = false
@@ -62,6 +67,15 @@ io.on('connection', function(socket) {
 			}
 		}
     });
+
+	socket.on('disconnecting', function () 
+	{
+		let rooms = Array.from(socket.rooms)
+		for(var i=1;i<rooms.length;i++)
+		{
+			rm.leave(socket,io,rooms[i])
+		}
+	});
 
 	//Whenever someone disconnects this piece of code executed
 	socket.on('disconnect', function () 

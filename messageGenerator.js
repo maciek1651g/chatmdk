@@ -1,3 +1,5 @@
+//const { leave } = require("./roomManager")
+
 module.exports = {
     errorMessage: (description) => {
         return '{"cmd":"error", '+description+'}'
@@ -12,5 +14,17 @@ module.exports = {
         }
 
         return msg+'}'
+    },
+
+    updateRoomMessage: (idRoom, count) => {
+        return '{"cmd":"updateRoom", "idroom":"'+idRoom+'", "count":'+count+'}'
+    },
+
+    leaveRoomMessage: (idRoom, status) => {
+        return '{"cmd":"leave", "idroom":"'+idRoom+'", "status":'+status+'}'
+    },
+
+    newMessage: (idRoom, text) => {
+        return '{"cmd":"msg", "idroom":"'+idRoom+'", "text":"'+text+'"}'
     }
 }
