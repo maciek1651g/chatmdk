@@ -99,7 +99,11 @@ module.exports = {
 
         if(clients && clients.has(from.id))
         {
-           from.to(idRoom).send(msgGen.newMessage(idRoom, text))
+            io.chatTexts[idRoom].unshift(text)          //najnowsza wiadomość na początku tablicy
+            if (io.chatTexts[idRoom].length > 50)
+                io.chatTexts[idRoom].length = 50
+
+            from.to(idRoom).send(msgGen.newMessage(idRoom, text))
         }
         else
         {
