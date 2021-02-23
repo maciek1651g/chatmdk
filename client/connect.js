@@ -37,16 +37,22 @@ socket.on('message', data =>
 	switch(data.cmd)
 	{
 		case 'join':
+			joinMessage(data)
 			break
 		case 'leave':
+			leaveMessage(data)
 			break
 		case 'updateRoom':
+			updateMessage(data)
 			break
 		case 'msg':
+			msgMessage(data)
 			break
 		case 'error':
+			errorMessage(data)
 			break
 		default:
+			//Info że nie rozpoznano kodu wiadomości
 	}
 })
 
