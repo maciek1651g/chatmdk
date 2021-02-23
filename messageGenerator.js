@@ -1,5 +1,3 @@
-//const { leave } = require("./roomManager")
-
 module.exports = {
     errorMessage: (description) => {
         return '{"cmd":"error", '+description+'}'

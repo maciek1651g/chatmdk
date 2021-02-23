@@ -49,7 +49,7 @@ io.on('connection', function(socket) {
 						isDataValid = false
 					break
 				case 'leave':
-					rm.join(socket,io, data.idroom?data.idroom:'')
+					rm.leave(socket,io, data.idroom?data.idroom:'')
 					break
 				case 'msg':
 					if(data.text && data.text!='')

@@ -1,5 +1,4 @@
 var socket = io({ query: {"idroom": "hksdf74"} });
-var tab = []
 
 socket.on('connect', (message) => 
 {
@@ -50,7 +49,6 @@ socket.on('message', data =>
 		default:
 	}
 })
-
 
 function transmitMessage(message) 
 {
