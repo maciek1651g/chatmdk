@@ -1,6 +1,6 @@
 module.exports = {
     errorMessage: (description) => {
-        return '{"cmd":"error", '+description+'}'
+        return '{"cmd":"error", "description":"'+description+'"}'
     },
 
     joinMessage: (idRoom, status, count=0, texts = []) => {
