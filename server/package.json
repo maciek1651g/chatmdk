@@ -7,7 +7,10 @@
     "doc": "docs"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "client": "cd client && yarn start",
+    "server": "nodemon index.js",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
   "repository": {
     "type": "git",
@@ -18,7 +21,6 @@
   "bugs": {
     "url": "https://github.com/maciek1651g/chatmdk/issues"
   },
-  "homepage": "https://github.com/maciek1651g/chatmdk#readme",
   "dependencies": {
     "express": "^4.17.1",
     "socket.io": "^3.1.1"
