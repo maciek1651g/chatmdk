@@ -10,7 +10,7 @@ io.waitingClients = new Set()
 io.chatTexts = []
 
 //Routing
-app.use(express.static('client'))
+app.use(express.static('build'))
 
 
 //Whenever someone connects this gets executed

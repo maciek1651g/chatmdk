@@ -6,7 +6,7 @@ import StartChat from "./StartChat";
 import mainBackground from "../../assets/images/mainBg.png"
 
 const MainPage = () => {
-    console.log(mainBackground)
+    //console.log(mainBackground)
     return (
         <MainPageContainer backgroundImage={mainBackground}>
             <div className="main-page-content-wrapper">
