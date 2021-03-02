@@ -1,3 +1,5 @@
+let transmitMessage = require('./connect')
+
 function joinRoom(idRoom, isRandom){
     if(idRoom && typeof(isRandom)==='boolean')
     {
@@ -21,7 +23,7 @@ function leaveRoom(idRoom){
 }
 
 function sendMessage(idRoom, text){
-    if(idRoom && text && text!='')
+    if(idRoom && text && text!=='')
     {
         const msg = '{"cmd":"msg", "idroom":"'+idRoom+'", "text":"'+text+'"}'
         transmitMessage(msg)

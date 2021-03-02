@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import ChatPage from "./components/ChatPage/ChatPage";
 
 import MainPage from "./components/MainPage/MainPage";
 
@@ -13,6 +14,9 @@ const App = () => {
         <Switch>
           <Route exact path="/">
             <MainPage />
+          </Route>
+          <Route exact path="/chat">
+            <ChatPage />
           </Route>
         </Switch>
       </Router>

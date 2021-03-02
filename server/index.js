@@ -10,7 +10,13 @@ io.waitingClients = new Set()
 io.chatTexts = []
 
 //Routing
+app.all("*", function (req, resp, next) {
+	console.log("Zapytanie: "+req.url); // do anything you want here
+	next();
+ });
+
 app.use(express.static('client'))
+
 
 
 //Whenever someone connects this gets executed

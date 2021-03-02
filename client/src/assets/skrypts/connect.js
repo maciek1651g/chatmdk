@@ -1,27 +1,7 @@
-function getURLParam(strParamName)
-{
-	strParamName = strParamName.toLowerCase();
-	var strReturn = "";
-	var strHref = window.location.href;
-	if ( strHref.indexOf("?") > -1 )
-	{
-		var strQueryString = strHref.substr(strHref.indexOf("?")).toLowerCase();
-		var aQueryString = strQueryString.split("&");
-		for ( var iParam = 0; iParam < aQueryString.length; iParam++ )
-		{
-			if (aQueryString[iParam].indexOf(strParamName + "=") > -1 )
-			{
-				var aParam = aQueryString[iParam].split("=");
-				strReturn = aParam[1];
-				break;
-			}
-		}
-	}
-  return strReturn;
-}
-
+let getURLParam = require('./getURLParam')
+let io = require('socket.io-client')
+let mS = require('./messagesService')
 var socket = io({ query: {"idroom": getURLParam("idroom")} });
-console.log(socket)
 
 socket.on('connect', (message) => 
 {
@@ -60,19 +40,19 @@ socket.on('message', data =>
 	switch(data.cmd)
 	{
 		case 'join':
-			joinMessage(data)
+			mS.joinMessage(data)
 			break
 		case 'leave':
-			leaveMessage(data)
+			mS.leaveMessage(data)
 			break
 		case 'updateRoom':
-			updateMessage(data)
+			mS.updateMessage(data)
 			break
 		case 'msg':
-			msgMessage(data)
+			mS.msgMessage(data)
 			break
 		case 'error':
-			errorMessage(data)
+			mS.errorMessage(data)
 			break
 		default:
 			//Info że nie rozpoznano kodu wiadomości
@@ -83,3 +63,5 @@ function transmitMessage(message)
 {
 	socket.send( message )	
 }
+
+module.exports = transmitMessage
