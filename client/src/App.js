@@ -15,7 +15,7 @@ const App = () => {
           <Route exact path="/">
             <MainPage />
           </Route>
-          <Route exact path="/chat">
+          <Route path="/chat">
             <ChatPage />
           </Route>
         </Switch>
