@@ -1,6 +1,6 @@
 import React from 'react';
 import ChatPageCointainer from "./ChatPageContainer";
-import '../../assets/skrypts/connect'
+//import '../../assets/skrypts/connect'
 
 class ChatPage extends React.Component {
     constructor(props) 
